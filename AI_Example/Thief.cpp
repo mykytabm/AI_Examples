@@ -1,12 +1,17 @@
-#include "pch.h"
 #include "Thief.h"
 
 
-Thief::Thief()
+Thief::Thief(location_type spawnLocation)
 {
-}
+	_location = spawnLocation;
 
+}
+void Thief::Update()
+{
+
+}
 
 Thief::~Thief()
 {
+	delete _stateMachine;
 }

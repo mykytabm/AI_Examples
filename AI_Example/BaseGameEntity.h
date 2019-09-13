@@ -8,12 +8,8 @@ private:
 public:
 
 
-	BaseGameEntity(int id)
-	{
-		SetID(id);
-	}
-	virtual ~BaseGameEntity();
 	virtual void Update() = 0;
 	int const ID()const { return _id; }
+	virtual ~BaseGameEntity();
 };
 
