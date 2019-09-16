@@ -30,12 +30,24 @@
     <ClInclude Include="Thief.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Locations.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="StateMachine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ThiefStates.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="DayNightCycle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="AI_Example.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
@@ -48,6 +60,15 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Thief.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ThiefStates.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="DayNightCycle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

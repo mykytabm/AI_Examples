@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
@@ -152,13 +152,19 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEntity.h" />
+    <ClInclude Include="DayNightCycle.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Locations.h" />
+    <ClInclude Include="State.h" />
+    <ClInclude Include="StateMachine.h" />
     <ClInclude Include="Thief.h" />
     <ClInclude Include="ThiefGame.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="ThiefStates.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AI_Example.cpp" />
+    <ClCompile Include="DayNightCycle.cpp" />
+    <ClCompile Include="main.cpp" />
     <ClCompile Include="BaseGameEntity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="Thief.cpp" />
@@ -169,6 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="ThiefStates.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

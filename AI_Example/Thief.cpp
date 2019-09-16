@@ -1,11 +1,17 @@
+#include "pch.h"
 #include "Thief.h"
+#include <iostream>
 
-
-Thief::Thief(location_type spawnLocation)
+Thief::Thief(std::string name)
 {
-	_location = spawnLocation;
+	std::cout << "Thief " << name << " just appeared somewhere in Venice" << std::endl;
+}
+
+void Thief::Start()
+{
 
 }
+
 void Thief::Update()
 {
 
@@ -13,5 +19,4 @@ void Thief::Update()
 
 Thief::~Thief()
 {
-	delete _stateMachine;
 }

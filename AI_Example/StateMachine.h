@@ -1,6 +1,8 @@
 #pragma once
 
 #include "State.h"
+#include <cassert>
+#include <string>
 
 
 template <class entity_type>
@@ -21,12 +23,12 @@ private:
 
 
 public:
-	StateMachine(entity_type* owner) :m_pOwner(owner),
-		m_pCurrentState(NULL),
-		m_pPreviousState(NULL),
-		m_pGlobalState(NULL));
+	//StateMachine(entity_type* owner) : m_pOwner(owner),
+	//	m_pCurrentState(NULL),
+	//	m_pPreviousState(NULL),
+	//	m_pGlobalState(NULL);
 
 
-		~StateMachine();
+	~StateMachine();
 };
 

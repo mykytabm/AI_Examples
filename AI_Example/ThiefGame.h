@@ -4,9 +4,11 @@
 
 class ThiefGame : public Game
 {
+
 public:
 	ThiefGame();
 	void Initialize();
+	void Start();
 	void Update();
 };
 

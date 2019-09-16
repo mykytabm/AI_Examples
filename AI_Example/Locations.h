@@ -5,7 +5,8 @@
 enum location_type
 {
 	home,
-	shop
+	tavern_red_fool,
+	palacio
 };
 
 

@@ -1,20 +1,30 @@
 #include "pch.h"
 #include "ThiefGame.h"
 #include <iostream>
+#include "Thief.h"
+
+
+Thief thief = Thief("Carla");
 
 
 ThiefGame::ThiefGame()
 {
-	Initialize();
+
 }
 
 void ThiefGame::Initialize()
 {
-	std::cout << ("hello this is game about thief");
+
+}
+
+void ThiefGame::Start()
+{
+
 }
 
 void ThiefGame::Update()
 {
+	thief.Update();
 }
 
 
