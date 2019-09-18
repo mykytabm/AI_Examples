@@ -13,8 +13,12 @@ private:
 	int _bagSize = 5;
 	int _goodsInBag = 0;
 	int _gold;
+	int _hunger = 0;
 
 public:
+	int Hunger() const { return _hunger; }
+	int Gold() const { return _gold; }
+	void UpdateHunger(const int amount) { _hunger += amount; if (_hunger < 0) _hunger = 0; }
 	StateMachine<Thief>* GetFSM() const { return _fsm; }
 	void AddGoodsToBag(const int amountOfGoods) { if (_goodsInBag < _bagSize) _goodsInBag += amountOfGoods; }
 	void SetAmountOfGoods(const int newGoodsAmount) { _goodsInBag = newGoodsAmount; }

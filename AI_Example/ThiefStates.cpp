@@ -24,11 +24,12 @@ void EnterPalacioAndStealGoods::Enter(Thief* thief)
 void EnterPalacioAndStealGoods::Execute(Thief* thief)
 {
 	thief->AddGoodsToBag(1);
+	thief->UpdateHunger(1);
 	cout << thief->Name() << ": "
 		<< "Oh, this is now mine.";
 	cout << " *" << thief->Name() << " found 1  good*" << endl;
 
-	if (thief->BagIsFull())
+	if (thief->BagIsFull() || thief->Hunger() > 8)
 	{
 		thief->GetFSM()->ChangeState(VisitMamaJulieAndSellGoods::Instance());
 	}
@@ -55,22 +56,32 @@ void VisitMamaJulieAndSellGoods::Enter(Thief* thief)
 
 		thief->ChangeLocation(tavern_red_fool);
 	}
+
+	cout << "*opens the tavern door*" << endl;
+	int goods = thief->AmountOfGoods();
+
+	if (goods > 0)
+	{
+		cout << "*Mama Julie takes thiefs' goods and gives back gold coins*" << endl;
+
+		cout << "*" << goods << " goods were sold for " << goods << " gold*" << endl;
+		thief->AddGold(thief->AmountOfGoods());
+		thief->SetAmountOfGoods(0);
+	}
+
 }
 
 void VisitMamaJulieAndSellGoods::Execute(Thief* thief)
 {
-	cout << "*opens the tavern door*" << endl;
-
-	cout << "*Mama Julie takes thiefs' bag and gives back gold coins*" << endl;
-	int goods = thief->AmountOfGoods();
-	cout << "*" << goods << " goods were sold for " << goods << " gold*" << endl;
-	thief->AddGold(thief->AmountOfGoods());
-	thief->SetAmountOfGoods(0);
-	cout << " thief sits and drinks a bit of wine" << endl;
-	cout << "thief spent one gold" << endl;
-	thief->AddGold(-1);
-	thief->GetFSM()->ChangeState(EnterPalacioAndStealGoods::Instance());
-
+	if (thief->Hunger() >= 2 && thief->Gold() >= 1)
+	{
+		cout << " thief sits and drinks a bit of wine" << endl;
+		cout << "thief spent one gold" << endl;
+		thief->AddGold(-1);
+		thief->UpdateHunger(-2);
+	}
+	else
+		thief->GetFSM()->ChangeState(EnterPalacioAndStealGoods::Instance());
 }
 
 void VisitMamaJulieAndSellGoods::Exit(Thief* thief)
