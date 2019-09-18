@@ -1,18 +1,28 @@
 #include "BaseGameEntity.h"
 #include "Locations.h"
+#include "StateMachine.h"
+#include <iostream>
+#include <string>
 
 class Thief : public BaseGameEntity
 {
 
 private:
-	location_type _location;
+	StateMachine<Thief>* _fsm;
+	location_type _location = home;
 	int _bagSize = 5;
-	int _goodInBag = 0;
+	int _goodsInBag = 0;
+	int _gold;
 
 public:
-	void AddGoodsToBag(const int amountOfGoods) { if (_goodInBag < _bagSize) _goodInBag += amountOfGoods; }
+	StateMachine<Thief>* GetFSM() const { return _fsm; }
+	void AddGoodsToBag(const int amountOfGoods) { if (_goodsInBag < _bagSize) _goodsInBag += amountOfGoods; }
+	void SetAmountOfGoods(const int newGoodsAmount) { _goodsInBag = newGoodsAmount; }
+	int AmountOfGoods() { return _goodsInBag; }
+	void AddGold(const int amount) { _gold += amount; }
 	void SetBagSize(const int newSize) { _bagSize = newSize; }
 	int BagSize() const { return _bagSize; }
+	bool BagIsFull() const { return  _goodsInBag >= _bagSize; }
 	location_type Location() const { return _location; }
 	void ChangeLocation(const location_type newLocation) { _location = newLocation; }
 

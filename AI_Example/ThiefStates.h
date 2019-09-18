@@ -1,6 +1,6 @@
 #include "State.h"
-#include "Thief.h"
 
+class Thief;
 class EnterPalacioAndStealGoods : public State<Thief>
 {
 private:

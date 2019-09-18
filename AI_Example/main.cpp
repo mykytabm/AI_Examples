@@ -20,7 +20,7 @@ int main()
 	for (int i = 0; i < 100; i++)
 	{
 		MyThiefGame.Update();
-		this_thread::sleep_for(2s);
+		system("pause");
 	}
 
 	return 0;
