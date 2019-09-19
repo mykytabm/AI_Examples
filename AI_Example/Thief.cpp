@@ -1,5 +1,5 @@
 #include "Thief.h"
-#include "ThiefStates.h"
+#include "EnterPalacioAndStealGoods.h"
 #include <iostream>
 
 Thief::Thief(std::string name)

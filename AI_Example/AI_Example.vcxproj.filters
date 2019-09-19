@@ -39,13 +39,10 @@
     <ClInclude Include="StateMachine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ThiefStates.h">
+    <ClInclude Include="EnterPalacioAndStealGoods.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="DayNightCycle.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="DayNightCycleStates.h">
+    <ClInclude Include="VisitTavernAndSellGoods.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -68,13 +65,10 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ThiefStates.cpp">
+    <ClCompile Include="EnterPalacioAndStealGoods.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="DayNightCycle.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="DayNightCycleStates.cpp">
+    <ClCompile Include="VisitTavernAndSellGoods.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

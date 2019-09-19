@@ -152,8 +152,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="BaseGameEntity.h" />
-    <ClInclude Include="DayNightCycle.h" />
-    <ClInclude Include="DayNightCycleStates.h" />
+    <ClInclude Include="EnterPalacioAndStealGoods.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Locations.h" />
     <ClInclude Include="State.h" />
@@ -161,11 +160,10 @@
     <ClInclude Include="Thief.h" />
     <ClInclude Include="ThiefGame.h" />
     <ClInclude Include="pch.h" />
-    <ClInclude Include="ThiefStates.h" />
+    <ClInclude Include="VisitTavernAndSellGoods.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="DayNightCycle.cpp" />
-    <ClCompile Include="DayNightCycleStates.cpp" />
+    <ClCompile Include="EnterPalacioAndStealGoods.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BaseGameEntity.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -177,7 +175,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="ThiefStates.cpp" />
+    <ClCompile Include="VisitTavernAndSellGoods.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
