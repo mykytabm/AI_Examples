@@ -1,7 +1,4 @@
-#ifndef STATE_H
-#define STATE_H
-
-
+#pragr, ma once
 
 template <class entity_type>
 class State
@@ -20,5 +17,3 @@ public:
 	//life full of surprises... ;o))
 	virtual void Exit(entity_type*) = 0;
 };
-
-#endif

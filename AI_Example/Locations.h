@@ -1,7 +1,4 @@
-#ifndef LOCATIONS_H
-#define LOCATIONS_H
-
-
+#pragma once
 enum location_type
 {
 	home,
@@ -9,11 +6,3 @@ enum location_type
 	palacio
 };
 
-
-
-
-
-
-
-
-#endif

@@ -1,3 +1,4 @@
+#pragma pnce
 #include "BaseGameEntity.h"
 #include "Locations.h"
 #include "StateMachine.h"
