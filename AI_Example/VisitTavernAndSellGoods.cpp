@@ -1,7 +1,7 @@
 #include "VisitTavernAndSellGoods.h"
 #include "Locations.h"
-#include "Thief.h"
-#include "EnterPalacioAndStealGoods.h"
+#include "GoHomeAndRest.h"
+
 
 using namespace std;
 
@@ -45,7 +45,7 @@ void VisitTavernAndSellGoods::Execute(Thief* thief)
 		thief->UpdateHunger(-2);
 	}
 	else
-		thief->GetFSM()->ChangeState(EnterPalacioAndStealGoods::Instance());
+		thief->FSM()->ChangeState(GoHomeAndRest::Instance());
 }
 
 void VisitTavernAndSellGoods::Exit(Thief* thief)

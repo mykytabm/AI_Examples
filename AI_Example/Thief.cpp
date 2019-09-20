@@ -2,11 +2,11 @@
 #include "EnterPalacioAndStealGoods.h"
 #include <iostream>
 
+
 Thief::Thief(std::string name)
 {
 	_name = name;
 	_fsm = new StateMachine<Thief>(this);
-	_fsm->SetCurrentState(EnterPalacioAndStealGoods::Instance());
 }
 
 void Thief::Start()

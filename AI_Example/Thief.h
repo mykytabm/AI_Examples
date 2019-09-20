@@ -1,7 +1,8 @@
-#pragma pnce
+#pragma once
 #include "BaseGameEntity.h"
 #include "Locations.h"
 #include "StateMachine.h"
+#include "ThiefGame.h"
 #include <iostream>
 #include <string>
 
@@ -20,7 +21,7 @@ public:
 	int Hunger() const { return _hunger; }
 	int Gold() const { return _gold; }
 	void UpdateHunger(const int amount) { _hunger += amount; if (_hunger < 0) _hunger = 0; }
-	StateMachine<Thief>* GetFSM() const { return _fsm; }
+	StateMachine<Thief>* FSM() const { return _fsm; }
 	void AddGoodsToBag(const int amountOfGoods) { if (_goodsInBag < _bagSize) _goodsInBag += amountOfGoods; }
 	void SetAmountOfGoods(const int newGoodsAmount) { _goodsInBag = newGoodsAmount; }
 	int AmountOfGoods() { return _goodsInBag; }

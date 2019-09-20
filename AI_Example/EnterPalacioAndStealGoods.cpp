@@ -32,7 +32,7 @@ void EnterPalacioAndStealGoods::Execute(Thief* thief)
 
 	if (thief->BagIsFull() || thief->Hunger() > 8)
 	{
-		thief->GetFSM()->ChangeState(VisitTavernAndSellGoods::Instance());
+		thief->FSM()->ChangeState(VisitTavernAndSellGoods::Instance());
 	}
 }
 

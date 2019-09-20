@@ -154,6 +154,7 @@
     <ClInclude Include="BaseGameEntity.h" />
     <ClInclude Include="EnterPalacioAndStealGoods.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="GoHomeAndRest.h" />
     <ClInclude Include="Locations.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="StateMachine.h" />
@@ -164,6 +165,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="EnterPalacioAndStealGoods.cpp" />
+    <ClCompile Include="GoHomeAndRest.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BaseGameEntity.cpp" />
     <ClCompile Include="Game.cpp" />

@@ -1,15 +1,20 @@
 #pragma once
 #include "State.h"
 #include "Thief.h"
-class VisitTavernAndSellGoods : public State<Thief>
+
+class GoHomeAndRest : public State<Thief>
 {
 private:
-	VisitTavernAndSellGoods() {}
+	int* _time;
+	GoHomeAndRest() {}
 
 public:
-	static VisitTavernAndSellGoods* Instance();
+	static GoHomeAndRest* Instance();
 
 	virtual void Enter(Thief* thief);
+
 	virtual void Execute(Thief* thief);
+
 	virtual void Exit(Thief* thief);
 };
+

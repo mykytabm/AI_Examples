@@ -5,8 +5,14 @@
 class ThiefGame : public Game
 {
 
+private:
+	int _hour;
+	static ThiefGame* _instance;
+
+	ThiefGame() {};
 public:
-	ThiefGame();
+	int* Hour() { return&_hour; }
+	static ThiefGame* Instance();
 	void Initialize();
 	void Start();
 	void Update();

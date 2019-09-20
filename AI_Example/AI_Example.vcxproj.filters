@@ -45,6 +45,9 @@
     <ClInclude Include="VisitTavernAndSellGoods.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="GoHomeAndRest.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="pch.cpp">
@@ -69,6 +72,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="VisitTavernAndSellGoods.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GoHomeAndRest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

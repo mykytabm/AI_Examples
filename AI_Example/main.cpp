@@ -11,15 +11,15 @@ ofstream out;
 
 int main()
 {
-	ThiefGame MyThiefGame = ThiefGame();
+	ThiefGame* MyThiefGame = ThiefGame::Instance();
 
 
-	MyThiefGame.Initialize();
-	MyThiefGame.Start();
+	MyThiefGame->Initialize();
+	MyThiefGame->Start();
 
 	for (int i = 0; i < 100; i++)
 	{
-		MyThiefGame.Update();
+		MyThiefGame->Update();
 		system("pause");
 	}
 
