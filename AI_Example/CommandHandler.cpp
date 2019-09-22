@@ -18,23 +18,17 @@ void CommandHandler::HandleCommand(command_type command, Thief*  thief)
 	case help:
 
 		ShowHelp();
-		ReadAndProccessCommand(thief);
 
-		break;
-	case rest:
+		ReadAndProccessCommand(thief);
 
 
 		break;
 	case plan_robbery:
-
-
-		break;
-	case go_to:
-
-		thief->ChangeLocation(ProccessLocationInput());
+		//set state to go home and prepare for robbing someone
 
 		break;
 	case buy_goods:
+		//set state to enter market and buy/sell goods
 
 
 		break;

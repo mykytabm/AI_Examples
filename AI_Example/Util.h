@@ -18,7 +18,7 @@ static enum command_type
 	help,
 	rest,
 	plan_robbery,
-	go_to,
+	//go_to,
 	buy_goods
 };
 
@@ -35,6 +35,6 @@ static std::map <std::string, command_type> StringCommands =
 	{"help",			help},
 	{"rest",			rest},
 	{"plan",			plan_robbery},
-	{"go",				go_to},
+	//{"go",				go_to},
 	{"buy",				buy_goods}
 };
