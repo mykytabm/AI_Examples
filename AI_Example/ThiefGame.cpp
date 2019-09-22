@@ -32,9 +32,8 @@ void ThiefGame::Start()
 	std::cout << "Thief " << thief.Name() << " just appeared in Venice, in his/her small palacio" << std::endl;
 	commandHandler->ReadAndProccessCommand(&thief);
 
-	thief.ChangeLocation(home);
-	std::string s;
-	thief.FSM()->ChangeState(EnterPalacioAndStealGoods::Instance());
+	//thief.ChangeLocation(home);
+	//thief.FSM()->ChangeState(EnterPalacioAndStealGoods::Instance());
 }
 
 void ThiefGame::Update()

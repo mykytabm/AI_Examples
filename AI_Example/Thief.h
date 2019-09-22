@@ -30,7 +30,7 @@ public:
 	int BagSize() const { return _bagSize; }
 	bool BagIsFull() const { return  _goodsInBag >= _bagSize; }
 	location_type Location() const { return _location; }
-	void ChangeLocation(const location_type newLocation) { _location = newLocation; }
+	void ChangeLocation(const location_type newLocation);
 
 	Thief(std::string name);
 	void Start();

@@ -9,10 +9,54 @@ CommandHandler* CommandHandler::_instance = 0;
 
 void CommandHandler::HandleCommand(command_type command, Thief*  thief)
 {
+	switch (command)
+	{
+	case none:
+
+
+		break;
+	case help:
+
+		ShowHelp();
+		ReadAndProccessCommand(thief);
+
+		break;
+	case rest:
+
+
+		break;
+	case plan_robbery:
+
+
+		break;
+	case go_to:
+
+		thief->ChangeLocation(ProccessLocationInput());
+
+		break;
+	case buy_goods:
+
+
+		break;
+	}
+
 
 }
 
-void CommandHandler::ParseCommand(std::string commandUnparsed, Thief * thief)
+
+
+void CommandHandler::ShowHelp()
+{
+	std::cout << "Thief whispers possible commands: " << std::endl;
+	for (const auto p : StringCommands)
+	{
+		std::cout << p.first << std::endl;
+	}
+}
+
+
+
+bool CommandHandler::ParseCommand(std::string commandUnparsed, Thief * thief)
 {
 	command_type command = none;
 
@@ -32,20 +76,36 @@ void CommandHandler::ParseCommand(std::string commandUnparsed, Thief * thief)
 	if (command != 0)
 	{
 		HandleCommand(command, thief);
+		return true;
 	}
 	else
-	{
-		//TODO: Show error message suggest to retype command, view help etc
-	}
+		return false;
+
 }
 
+
+location_type CommandHandler::ProccessLocationInput()
+{
+	std::string unparsedCommand;
+	std::cout << "home:   1" << std::endl;
+	std::cout << "tavern: 2" << std::endl;
+	std::cout << "market: 3" << std::endl;
+
+	std::getline(std::cin, unparsedCommand);
+	return (location_type)(((int)unparsedCommand[0]) - '0' - 1);
+}
 
 
 void CommandHandler::ReadAndProccessCommand(Thief * thief)
 {
+	std::cout << "Enter command:" << std::endl;
 	std::string unparsedCommand;
 	std::getline(std::cin, unparsedCommand);
-	ParseCommand(unparsedCommand, thief);
+	if (!ParseCommand(unparsedCommand, thief))
+	{
+		std::cout << "Thief did not understand " << unparsedCommand << ", to view possible commands type in help." << std::endl;
+		ReadAndProccessCommand(thief);
+	}
 
 }
 
@@ -57,6 +117,8 @@ CommandHandler * CommandHandler::Instance()
 	}
 	return _instance;
 }
+
+
 
 CommandHandler::~CommandHandler()
 {
