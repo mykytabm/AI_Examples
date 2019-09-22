@@ -1,16 +1,15 @@
-#include "pch.h"
-#include "ThiefGame.h"
 #include <iostream>
+#include "pch.h"
 #include "Thief.h"
 #include "GoHomeAndRest.h"
 #include "EnterPalacioAndStealGoods.h"
-
-
+#include "CommandHandler.h"
+#include "ThiefGame.h"
 
 
 Thief thief = Thief("Carla");
 ThiefGame* ThiefGame::_instance = 0;
-
+CommandHandler* commandHandler = CommandHandler::Instance();
 
 ThiefGame* ThiefGame::Instance()
 {
@@ -29,8 +28,13 @@ void ThiefGame::Initialize()
 void ThiefGame::Start()
 {
 	thief.Start();
-	thief.FSM()->SetCurrentState(EnterPalacioAndStealGoods::Instance());
 
+	std::cout << "Thief " << thief.Name() << " just appeared in Venice, in his/her small palacio" << std::endl;
+	commandHandler->ReadAndProccessCommand(&thief);
+
+	thief.ChangeLocation(home);
+	std::string s;
+	thief.FSM()->ChangeState(EnterPalacioAndStealGoods::Instance());
 }
 
 void ThiefGame::Update()

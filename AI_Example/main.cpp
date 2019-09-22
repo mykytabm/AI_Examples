@@ -1,10 +1,10 @@
 
-#include "pch.h"
 #include <fstream>
 #include <iostream>
-#include "ThiefGame.h"
 #include <thread>
 #include <chrono>
+#include "pch.h"
+#include "ThiefGame.h"
 using namespace std;
 
 ofstream out;
@@ -17,10 +17,10 @@ int main()
 	MyThiefGame->Initialize();
 	MyThiefGame->Start();
 
-	for (int i = 0; i < 100; i++)
+	while(true)
 	{
 		MyThiefGame->Update();
-		system("pause");
+		this_thread::sleep_for(1s);
 	}
 
 	return 0;

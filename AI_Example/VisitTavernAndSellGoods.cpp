@@ -1,7 +1,6 @@
-#include "VisitTavernAndSellGoods.h"
-#include "Locations.h"
+#include "Util.h"
 #include "GoHomeAndRest.h"
-
+#include "VisitTavernAndSellGoods.h"
 
 using namespace std;
 

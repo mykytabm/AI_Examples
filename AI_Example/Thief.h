@@ -1,6 +1,6 @@
 #pragma once
 #include "BaseGameEntity.h"
-#include "Locations.h"
+#include "Util.h"
 #include "StateMachine.h"
 #include "ThiefGame.h"
 #include <iostream>

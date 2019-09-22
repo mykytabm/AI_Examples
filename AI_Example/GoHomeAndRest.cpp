@@ -1,7 +1,7 @@
-#include "GoHomeAndRest.h"
-#include "Locations.h"
+#include "Util.h"
 #include "ThiefGame.h"
 #include "EnterPalacioAndStealGoods.h"
+#include "GoHomeAndRest.h"
 
 
 
@@ -17,6 +17,7 @@ void GoHomeAndRest::Enter(Thief * thief)
 	if (thief->Location() != home)
 	{
 		thief->ChangeLocation(home);
+		std::cout << "its time to sleep" << std::endl;
 	}
 }
 

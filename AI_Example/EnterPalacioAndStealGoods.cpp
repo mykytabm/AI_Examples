@@ -1,8 +1,8 @@
-#include "EnterPalacioAndStealGoods.h"
-#include "VisitTavernAndSellGoods.h"
-#include "Locations.h"
 #include <iostream>
 #include <string>
+#include "EnterPalacioAndStealGoods.h"
+#include "VisitTavernAndSellGoods.h"
+#include "Util.h"
 #include "Thief.h"
 using namespace std;
 

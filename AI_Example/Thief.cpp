@@ -1,6 +1,6 @@
-#include "Thief.h"
 #include "EnterPalacioAndStealGoods.h"
 #include <iostream>
+#include "Thief.h"
 
 
 Thief::Thief(std::string name)
@@ -11,12 +11,13 @@ Thief::Thief(std::string name)
 
 void Thief::Start()
 {
-	std::cout << "Thief " << _name << " just appeared somewhere in Venice" << std::endl;
+	
 }
 
 void Thief::Update()
 {
 	_fsm->Update();
+
 }
 
 Thief::~Thief()

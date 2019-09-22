@@ -1,8 +1,8 @@
 #pragma once
 
-#include "State.h"
 #include <cassert>
 #include <string>
+#include "State.h"
 
 
 template <class entity_type>
@@ -75,7 +75,8 @@ public:
 		m_pPreviousState = m_pCurrentState;
 
 		//call the exit method of the existing state
-		m_pCurrentState->Exit(m_pOwner);
+		if (m_pCurrentState != NULL)
+			m_pCurrentState->Exit(m_pOwner);
 
 		//change state to the new state
 		m_pCurrentState = pNewState;
