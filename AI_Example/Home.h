@@ -1,15 +1,17 @@
 #pragma once
 #include <iostream>
 #include <array>
+#include <vector>
 #include "Util.h"
 #include "BaseGameEntity.h"
 
 class Home : public BaseGameEntity
 {
 private:
-	std::array<equipment_type, 6> _equipment = std::array<equipment_type, 6>();
+	std::vector<equipment_type> _equipment = std::vector<equipment_type>();
+	int _equipmentNum = 6;
 public:
-	std::array<equipment_type, 6>& Equipment() { return _equipment; }
+	std::vector<equipment_type>& Equipment() { return _equipment; }
 	Home();
 	~Home();
 

@@ -17,10 +17,12 @@ private:
 	int _goodsInBag = 0;
 	int _gold;
 	int _hunger = 0;
-	std::array<equipment_type, 3> _pockets;
+	int _pocketsNum = 3;
+	std::vector<equipment_type> _pockets = std::vector<equipment_type>();
 	Home * _home;
+
 public:
-	std::array<equipment_type, 3>& Pockets() { return _pockets; }
+	std::vector<equipment_type>& Pockets() { return _pockets; }
 	Home* ThiefHome() { return _home; }
 	int Hunger() const { return _hunger; }
 	int Gold() const { return _gold; }
