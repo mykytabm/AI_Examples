@@ -153,6 +153,9 @@
   <ItemGroup>
     <ClInclude Include="BaseGameEntity.h" />
     <ClInclude Include="CommandHandler.h" />
+    <ClInclude Include="GoHomeAndPlanRobbery.h" />
+    <ClInclude Include="Home.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="EnterPalacioAndStealGoods.h" />
     <ClInclude Include="Game.h" />
@@ -167,7 +170,9 @@
   <ItemGroup>
     <ClCompile Include="CommandHandler.cpp" />
     <ClCompile Include="EnterPalacioAndStealGoods.cpp" />
+    <ClCompile Include="GoHomeAndPlanRobbery.cpp" />
     <ClCompile Include="GoHomeAndRest.cpp" />
+    <ClCompile Include="Home.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BaseGameEntity.cpp" />
     <ClCompile Include="Game.cpp" />
@@ -179,8 +184,10 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="Util.cpp" />
     <ClCompile Include="VisitTavernAndSellGoods.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="AI_Example.rc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

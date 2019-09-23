@@ -9,10 +9,11 @@ void Thief::ChangeLocation(const location_type newLocation)
 	std::cout << "Thief just arrived to: " << LocationNames[_location] << std::endl;
 }
 
-Thief::Thief(std::string name)
+Thief::Thief(std::string name, Home* home)
 {
 	_name = name;
 	_fsm = new StateMachine<Thief>(this);
+	_home = home;
 }
 
 void Thief::Start()

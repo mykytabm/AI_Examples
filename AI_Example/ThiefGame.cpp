@@ -5,12 +5,12 @@
 #include "EnterPalacioAndStealGoods.h"
 #include "CommandHandler.h"
 #include "ThiefGame.h"
+#include "Home.h"
 
-
-Thief thief = Thief("Carla");
 ThiefGame* ThiefGame::_instance = 0;
 CommandHandler* commandHandler = CommandHandler::Instance();
-
+Home thiefHome = Home();
+Thief thief = Thief("Carla", &thiefHome);
 ThiefGame* ThiefGame::Instance()
 {
 	if (_instance == 0)

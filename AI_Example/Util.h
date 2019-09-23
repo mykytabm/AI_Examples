@@ -11,8 +11,15 @@ enum location_type
 
 };
 
+enum equipment_type
+{
+	lockpick,
+	rope,
+	pincet,
+	tobos
+};
 
-static enum command_type
+enum command_type
 {
 	none,
 	help,

@@ -2,7 +2,7 @@
 #include <cctype>
 #include <algorithm>
 #include "CommandHandler.h"
-
+#include "GoHomeAndPlanRobbery.h"
 
 
 CommandHandler* CommandHandler::_instance = 0;
@@ -11,10 +11,6 @@ void CommandHandler::HandleCommand(command_type command, Thief*  thief)
 {
 	switch (command)
 	{
-	case none:
-
-
-		break;
 	case help:
 
 		ShowHelp();
@@ -24,6 +20,7 @@ void CommandHandler::HandleCommand(command_type command, Thief*  thief)
 
 		break;
 	case plan_robbery:
+		thief->FSM()->ChangeState(GoHomeAndPlanRobbery::Instance());
 		//set state to go home and prepare for robbing someone
 
 		break;
