@@ -21,6 +21,8 @@ public:
 
 	void ReadAndProccessCommand(Thief* thief);
 
+	command_type ParseCommand(std::string commandUnparsed);
+
 	void ShowHelp();
 
 	location_type ProccessLocationInput();

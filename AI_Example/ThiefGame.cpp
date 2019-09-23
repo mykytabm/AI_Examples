@@ -28,6 +28,7 @@ void ThiefGame::Initialize()
 void ThiefGame::Start()
 {
 	thief.Start();
+	thiefHome.Start();
 
 	std::cout << "Thief " << thief.Name() << " just appeared in Venice, in his/her small palacio" << std::endl;
 	commandHandler->ReadAndProccessCommand(&thief);

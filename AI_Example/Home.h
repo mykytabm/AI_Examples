@@ -1,12 +1,20 @@
 #pragma once
 #include <iostream>
-class Home
+#include <array>
+#include "Util.h"
+#include "BaseGameEntity.h"
+
+class Home : public BaseGameEntity
 {
 private:
-
+	std::array<equipment_type, 6> _equipment = std::array<equipment_type, 6>();
 public:
-	std::string homeName = "Houm";
+	std::array<equipment_type, 6>& Equipment() { return _equipment; }
 	Home();
 	~Home();
+
+	// Inherited via BaseGameEntity
+	virtual void Start() override;
+	virtual void Update() override;
 };
 

@@ -49,7 +49,7 @@ void CommandHandler::ShowHelp()
 
 bool CommandHandler::ParseCommand(std::string commandUnparsed, Thief * thief)
 {
-	command_type command = none;
+	command_type command = command_none;
 
 	std::transform(commandUnparsed.begin(), commandUnparsed.end(), commandUnparsed.begin(),
 		[](unsigned char c) { return std::tolower(c); });
@@ -64,15 +64,37 @@ bool CommandHandler::ParseCommand(std::string commandUnparsed, Thief * thief)
 		}
 	}
 
-	if (command != 0)
+	if (command != command_none)
 	{
 		HandleCommand(command, thief);
 		return true;
 	}
-	else
-		return false;
+	return false;
 
 }
+
+command_type CommandHandler::ParseCommand(std::string commandUnparsed)
+{
+	command_type command = command_none;
+
+	std::transform(commandUnparsed.begin(), commandUnparsed.end(), commandUnparsed.begin(),
+		[](unsigned char c) { return std::tolower(c); });
+
+	for (const auto p : StringCommands)
+	{
+
+		if (commandUnparsed.find(p.first) != std::string::npos)
+		{
+			command = p.second;
+			break;
+		}
+	}
+
+
+	return command;
+
+}
+
 
 
 location_type CommandHandler::ProccessLocationInput()

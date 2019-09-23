@@ -6,7 +6,7 @@ class GoHomeAndPlanRobbery : public State<Thief>
 
 private:
 	GoHomeAndPlanRobbery() {};
-	void ManageEquipment();
+	void ManageEquipment(Thief* thief, Home* home);
 public:
 	static GoHomeAndPlanRobbery* Instance();
 

@@ -4,7 +4,7 @@
 #include "StateMachine.h"
 #include "Home.h"
 #include <iostream>
-#include <list>
+#include <array>
 #include <string>
 #include "ThiefGame.h"
 class Thief : public BaseGameEntity
@@ -17,9 +17,10 @@ private:
 	int _goodsInBag = 0;
 	int _gold;
 	int _hunger = 0;
-	std::list<equipment_type> equipment;
-	Home* _home;
+	std::array<equipment_type, 3> _pockets;
+	Home * _home;
 public:
+	std::array<equipment_type, 3>& Pockets() { return _pockets; }
 	Home* ThiefHome() { return _home; }
 	int Hunger() const { return _hunger; }
 	int Gold() const { return _gold; }

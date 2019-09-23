@@ -4,6 +4,7 @@
 
 enum location_type
 {
+	location_none,
 	home,
 	tavern_red_fool,
 	market,
@@ -13,20 +14,38 @@ enum location_type
 
 enum equipment_type
 {
+	equipment_none,
 	lockpick,
-	rope,
-	pincet,
-	tobos
+	climbing_gear,
+	knife,
+	smoke_bomb
 };
 
 enum command_type
 {
-	none,
+	command_none,
 	help,
 	rest,
 	plan_robbery,
-	//go_to,
-	buy_goods
+	buy_goods,
+	pockets,
+	shelf,
+	add,
+	replace,
+	move,
+	drop,
+	ready,
+	not_ready,
+	stop
+};
+
+
+static std::map<equipment_type, std::string> EquipmentNames =
+{
+	{lockpick,				"lockpick"},
+	{climbing_gear,			"climbing gear"},
+	{knife,					"knife"},
+	{smoke_bomb,			"smoke bomb"}
 };
 
 static std::map <location_type, std::string> LocationNames =
@@ -37,11 +56,21 @@ static std::map <location_type, std::string> LocationNames =
 	{palacio,			"palacio"}
 };
 
+
+
+
 static std::map <std::string, command_type> StringCommands =
 {
 	{"help",			help},
 	{"rest",			rest},
 	{"plan",			plan_robbery},
-	//{"go",				go_to},
-	{"buy",				buy_goods}
+	{"pockets",			pockets},
+	{"shelf",			shelf},
+	{"add",				add},
+	{"replace",			replace},
+	{"move",			move},
+	{"ready",			ready},
+	{"not_ready",		not_ready},
+	{"stop",			stop}
+
 };

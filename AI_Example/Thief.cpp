@@ -3,6 +3,8 @@
 #include "Thief.h"
 
 
+
+
 void Thief::ChangeLocation(const location_type newLocation)
 {
 	_location = newLocation;
@@ -18,6 +20,11 @@ Thief::Thief(std::string name, Home* home)
 
 void Thief::Start()
 {
+	//initialize default thief equipment
+	_pockets[0] = lockpick;
+	_pockets[1] = lockpick;
+
+
 
 }
 
