@@ -11,7 +11,6 @@ void CommandHandler::HandleCommand(command_type command, Thief*  thief)
 {
 	switch (command)
 	{
-
 	default:
 		std::cout << "*coughs* you can do better" << std::endl;
 		ReadAndProccessCommand(thief);

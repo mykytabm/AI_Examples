@@ -69,6 +69,7 @@ static std::map <std::string, command_type> StringCommands =
 	{"add",				add},
 	{"replace",			replace},
 	{"move",			move},
+	{"drop",			drop},
 	{"ready",			ready},
 	{"not_ready",		not_ready},
 	{"stop",			stop}

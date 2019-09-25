@@ -24,13 +24,16 @@ void GoHomeAndPlanRobbery::Enter(Thief * thief)
 	std::cout << "*sips a bit of wine* " << "its time to plan this night" << std::endl;
 	std::cout << "Manage " << thief->Name() << " equipment" << std::endl;
 	ManageEquipment(thief, thief->ThiefHome());
+	std::cout << "now select mansion" << std::endl;
 }
 
 void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 {
-	system("cls");
-	while (true)
+	bool userReady = false;
+
+	while (!userReady)
 	{
+		system("cls");
 		std::string s = "";
 		//print items in the shelf
 		std::cout << "========== Equipment Shelf ==========" << std::endl;
@@ -66,9 +69,10 @@ void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 		std::istringstream iss(s);
 		for (std::string s; iss >> s; )
 			result.push_back(s);
-		for (int i = 0; i < 2; i++)
+		for (int i = 0; i < (result.size() > 2 ? 2 : 1); i++)
 		{
 			parsedCommands.push_back(CommandHandler::Instance()->ParseCommand(result[i]));
+			std::cout << i << std::endl;
 		}
 
 
@@ -76,28 +80,28 @@ void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 		secondVec = parsedCommands[0] == pockets ? home->Equipment() : thief->Pockets();
 		try
 		{
-			std::istringstream issFirstItem(result[2]);
-			issFirstItem >> firstItemIndex;
-			if (issFirstItem.fail()) {
-				std::cout << "error" << std::endl;
-				// something wrong happened
+			if (result.size() >= 2)
+			{
+				std::istringstream issFirstItem(result[2]);
+				issFirstItem >> firstItemIndex;
+				if (issFirstItem.fail()) {
+					std::cout << "something is not right, try again" << std::endl;
+				}
 			}
-
 			if (result.size() > 3)
 			{
 				std::istringstream issSecondItem(result[3]);
 				issSecondItem >> secondItemIndex;
 				if (issSecondItem.fail()) {
-					std::cout << "error" << std::endl;
-					// something wrong happened
+					std::cout << "something is not right, try again" << std::endl;
 				}
 			}
 
 		}
 		catch (const std::exception&)
 		{
-			std::cout << "error" << std::endl;
-			//ManageEquipment(thief, home);
+			std::cout << "something is not right, try again" << std::endl;
+
 		}
 
 
@@ -128,31 +132,25 @@ void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 
 		}
 		case drop:
-			firstVec->at(firstItemIndex) = equipment_none;
+
+			firstVec->at(firstItemIndex - 1) = equipment_none;
 			break;
 
 
 		case move:
-		{
 			for (int i = 0; i < secondVec->size(); i++)
 			{
-				if (secondVec->at(i) = equipment_none)
+				if (secondVec->at(i) == equipment_none)
 				{
-					secondVec->at(i) = firstVec->at(firstItemIndex);
-					firstVec->at(firstItemIndex) = equipment_none;
+
+					secondVec->at(i) = firstVec->at(firstItemIndex - 1);
+					firstVec->at(firstItemIndex - 1) = equipment_none;
 					break;
 				}
 			}
-			std::cout << "you cant do that" << std::endl;
+			break;
 		}
-		}
-
-		break;
 	}
-
-
-	ManageEquipment(thief, thief->ThiefHome());
-
 }
 
 
