@@ -89,8 +89,6 @@ command_type CommandHandler::ParseCommand(std::string commandUnparsed)
 			break;
 		}
 	}
-
-
 	return command;
 
 }
@@ -120,6 +118,13 @@ void CommandHandler::ReadAndProccessCommand(Thief * thief)
 		ReadAndProccessCommand(thief);
 	}
 
+}
+
+bool CommandHandler::CommandAllowed(std::vector<command_type> allowedCommands, command_type command)
+{
+	auto x = std::find(std::begin(allowedCommands), std::end(allowedCommands), command);
+	if (x == std::end(allowedCommands)) return false;
+	return true;
 }
 
 CommandHandler * CommandHandler::Instance()

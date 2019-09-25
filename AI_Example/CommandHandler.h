@@ -2,6 +2,7 @@
 #include "Thief.h"
 #include "Util.h"
 #include <iostream>
+#include <vector>
 
 class CommandHandler
 {
@@ -17,6 +18,7 @@ private:
 
 public:
 
+	bool CommandAllowed(std::vector<command_type> alllowedCommands, command_type command);
 	static CommandHandler* Instance();
 
 	void ReadAndProccessCommand(Thief* thief);
