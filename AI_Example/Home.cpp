@@ -22,10 +22,10 @@ void Home::Start()
 {
 	for (size_t i = 0; i < _equipmentNum; i++)
 	{
-		_equipment.push_back(equipment_none);
+		_equipmentShelf.push_back(equipment_none);
 	}
-	_equipment[0] = lockpick;
-	_equipment[1] = climbing_gear;
+	_equipmentShelf[0] = lockpick;
+	_equipmentShelf[1] = climbing_gear;
 }
 
 void Home::Update()

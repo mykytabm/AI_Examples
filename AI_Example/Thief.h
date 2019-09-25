@@ -22,7 +22,7 @@ private:
 	Home * _home;
 
 public:
-	std::vector<equipment_type>& Pockets() { return _pockets; }
+	std::vector<equipment_type>* Pockets() { return &_pockets; }
 	Home* ThiefHome() { return _home; }
 	int Hunger() const { return _hunger; }
 	int Gold() const { return _gold; }

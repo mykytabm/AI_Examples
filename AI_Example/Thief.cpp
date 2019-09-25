@@ -25,8 +25,8 @@ void Thief::Start()
 	{
 		_pockets.push_back(equipment_none);
 	}
-	_pockets[0] = lockpick;
-	_pockets[1] = lockpick;
+	_pockets.at(0) = lockpick;
+	_pockets.at(1) = lockpick;
 
 
 

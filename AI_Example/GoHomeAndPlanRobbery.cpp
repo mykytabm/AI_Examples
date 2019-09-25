@@ -16,6 +16,7 @@ GoHomeAndPlanRobbery * GoHomeAndPlanRobbery::Instance()
 
 void GoHomeAndPlanRobbery::Enter(Thief * thief)
 {
+
 	if (thief->Location() != home)
 	{
 		thief->ChangeLocation(home);
@@ -27,22 +28,24 @@ void GoHomeAndPlanRobbery::Enter(Thief * thief)
 
 void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 {
-	std::string s = "";
-	//print items in the shelf
-	std::cout << "========== Equipment Shelf ==========" << std::endl;
-	for (size_t i = 0; i < home->Equipment().size(); i++)
-	{
-		std::cout << i + 1 << ": " << EquipmentNames[home->Equipment()[i]] << std::endl;
-	}
-
-	//print items in thiefs' pockets
-	std::cout << "========== " << thief->Name() << " pockets " << " ==========" << std::endl;
-	for (size_t i = 0; i < thief->Pockets().size(); i++)
-	{
-		std::cout << i + 1 << ": " << EquipmentNames[thief->Pockets()[i]] << std::endl;
-	}
+	system("cls");
 	while (true)
 	{
+		std::string s = "";
+		//print items in the shelf
+		std::cout << "========== Equipment Shelf ==========" << std::endl;
+		for (size_t i = 0; i < home->Equipment()->size(); i++)
+		{
+			std::cout << i + 1 << ": " << EquipmentNames[home->Equipment()->at(i)] << std::endl;
+		}
+
+		//print items in thiefs' pockets
+		std::cout << "========== " << thief->Name() << " pockets " << " ==========" << std::endl;
+		for (size_t i = 0; i < thief->Pockets()->size(); i++)
+		{
+			std::cout << i + 1 << ": " << EquipmentNames[thief->Pockets()->at(i)] << std::endl;
+		}
+
 		std::cout << "to add/replace/move or drop items use commands: " << std::endl;
 		std::cout << "pockets add 1, to add 1st item from shelf to pockets " << std::endl;
 		std::cout << "pockets remove 1, to remove 1st item from pockets to shelf" << std::endl;
@@ -55,10 +58,10 @@ void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 		std::vector<std::string> result;
 		std::vector <command_type> parsedCommands;
 		bool modifyThiefPockets = false;
-		std::vector<equipment_type> targetVec;
 		int firstItemIndex = -1;
 		int secondItemIndex = -1;
-
+		std::vector<equipment_type>* firstVec;
+		std::vector<equipment_type>* secondVec;
 
 		std::istringstream iss(s);
 		for (std::string s; iss >> s; )
@@ -67,40 +70,89 @@ void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 		{
 			parsedCommands.push_back(CommandHandler::Instance()->ParseCommand(result[i]));
 		}
-		targetVec = parsedCommands[0] == pockets ? thief->Pockets() : home->Equipment();
-		switch (parsedCommands[1])
+
+
+		firstVec = parsedCommands[0] == pockets ? thief->Pockets() : home->Equipment();
+		secondVec = parsedCommands[0] == pockets ? home->Equipment() : thief->Pockets();
+		try
 		{
-		case add:
-			//TODO: get rid of  checks on is digid and length, find better way
-			//if (isdigit(result[2][0]) && result[2].length() == 1)
-
-			break;
-
-
-		case replace:
-			if (isdigit(result[2][0]) && isdigit(result[3][0]) && result[2].length() == 1 && result[3].length() == 1)
-			{
-				firstItemIndex = (int)(result[2][0] - '0');
-
-				secondItemIndex = (int)(result[3][0] - '0');
+			std::istringstream issFirstItem(result[2]);
+			issFirstItem >> firstItemIndex;
+			if (issFirstItem.fail()) {
+				std::cout << "error" << std::endl;
+				// something wrong happened
 			}
-			break;
 
+			if (result.size() > 3)
+			{
+				std::istringstream issSecondItem(result[3]);
+				issSecondItem >> secondItemIndex;
+				if (issSecondItem.fail()) {
+					std::cout << "error" << std::endl;
+					// something wrong happened
+				}
+			}
 
-		case drop:
-
-			break;
-
-
-		case move:
-
-			break;
+		}
+		catch (const std::exception&)
+		{
+			std::cout << "error" << std::endl;
+			//ManageEquipment(thief, home);
 		}
 
 
 
+		switch (parsedCommands[1])
+		{
+		case add:
 
+			for (int i = 0; i < firstVec->size(); i++)
+			{
+				if (firstVec->at(i) == equipment_none)
+				{
+
+					firstVec->at(i) = secondVec->at(firstItemIndex - 1);
+					secondVec->at(firstItemIndex - 1) = equipment_none;
+					break;
+				}
+			}
+			break;
+
+
+		case replace:
+		{
+			equipment_type temp = firstVec->at(firstItemIndex - 1);
+			firstVec->at(firstItemIndex - 1) = secondVec->at(secondItemIndex - 1);
+			secondVec->at(secondItemIndex - 1) = temp;
+			break;
+
+		}
+		case drop:
+			firstVec->at(firstItemIndex) = equipment_none;
+			break;
+
+
+		case move:
+		{
+			for (int i = 0; i < secondVec->size(); i++)
+			{
+				if (secondVec->at(i) = equipment_none)
+				{
+					secondVec->at(i) = firstVec->at(firstItemIndex);
+					firstVec->at(firstItemIndex) = equipment_none;
+					break;
+				}
+			}
+			std::cout << "you cant do that" << std::endl;
+		}
+		}
+
+		break;
 	}
+
+
+	ManageEquipment(thief, thief->ThiefHome());
+
 }
 
 
