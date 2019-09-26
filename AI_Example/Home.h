@@ -8,12 +8,17 @@
 class Home : public BaseGameEntity
 {
 private:
-	//std::vector <
-		std::vector<equipment_type> _equipmentShelf = std::vector<equipment_type>();
+	std::vector <Palazzo> _availablePalazzos = std::vector<Palazzo>();
+	std::vector<equipment_type> _equipmentShelf = std::vector<equipment_type>();
 	int _equipmentNum = 6;
+
+	void GenerateEquipment();
+	void GeneratePalazzo();
+
 public:
-	std::vector<equipment_type>* Equipment() { return &_equipmentShelf; }
 	Home();
+	std::vector<Palazzo>* Palazzos() { return &_availablePalazzos; }
+	std::vector<equipment_type>* Equipment() { return &_equipmentShelf; }
 	~Home();
 
 	// Inherited via BaseGameEntity

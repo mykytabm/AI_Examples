@@ -5,7 +5,6 @@
 #include <algorithm>
 #include "CommandHandler.h"
 #include "GoHomeAndPlanRobbery.h"
-#include "NameGenerator.h"
 GoHomeAndPlanRobbery * GoHomeAndPlanRobbery::Instance()
 {
 	static GoHomeAndPlanRobbery instance;
@@ -25,8 +24,9 @@ void GoHomeAndPlanRobbery::Enter(Thief * thief)
 	std::cout << "*sips a bit of wine* " << "its time to plan this night" << std::endl;
 	std::cout << "I need to choose who I will be robbing this time" << std::endl;
 
-	std::cout << "Manage " << thief->Name() << " equipment" << std::endl;
-	ManageEquipment(thief, thief->ThiefHome());
+	SelectRobberyTarget(thief->ThiefHome());
+
+	//ManageEquipment(thief, thief->ThiefHome());
 }
 
 void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
@@ -98,6 +98,37 @@ void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 
 	}
 }
+
+
+void GoHomeAndPlanRobbery::SelectRobberyTarget(Home * home)
+{
+	system("cls");
+
+
+	auto palazzoVec = home->Palazzos();
+	for (size_t i = 0; i < palazzoVec->size(); i++)
+	{
+		auto p = palazzoVec->at(i);
+		std::cout << "=============================" << i + 1 << ". Palazzo of " << p.owner << " =============================" << std::endl << std::endl;
+
+		std::cout << "Additional notes: " << p.shortDescription << std::endl << std::endl;
+
+		std::cout << "Number of floors: " << p.guards << std::endl << std::endl;
+
+		std::cout << "Number of guards: " << p.numberOfFloors << std::endl << std::endl;
+
+		std::cout << "Number of exits: " << p.numberOfExits << std::endl << std::endl;
+
+		std::cout << "Dog: " << (p.dog ? " Si" : " No ") << std::endl << std::endl;
+	}
+	std::cout << "=====================================================================================" << std::endl;
+	std::string s = "";
+	std::getline(std::cin, s);
+	//if()
+
+}
+
+
 void GoHomeAndPlanRobbery::HandleUserAction(std::vector<command_type> parsedCommands, std::string* s,
 	std::vector<equipment_type>* firstVec, int firstItemIndex,
 	std::vector<equipment_type>* secondVec, int  secondItemIndex)
