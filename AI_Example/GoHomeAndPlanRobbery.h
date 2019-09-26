@@ -1,6 +1,7 @@
 #pragma once
 #include "State.h"
 #include "Thief.h"
+#include <string>   
 class GoHomeAndPlanRobbery : public State<Thief>
 {
 
@@ -8,9 +9,9 @@ private:
 	GoHomeAndPlanRobbery() {};
 	void ManageEquipment(Thief* thief, Home* home);
 	void DisplayItems(Thief* thief, Home* home, std::string feedback);
-	void HandleUserAction(std::vector<command_type> parsedCommands, std::vector<equipment_type>* firstVec, int firstItemIndex,
+	void HandleUserAction(std::vector<command_type> parsedCommands, std::string* s, std::vector<equipment_type>* firstVec, int firstItemIndex,
 		std::vector<equipment_type>* secondVec, int  secondItemIndex);
-	std::vector<command_type> _allowedCommands = { pockets,shelf };
+	std::vector<command_type> _allowedCommands = { command_pockets,command_shelf };
 public:
 	static GoHomeAndPlanRobbery* Instance();
 

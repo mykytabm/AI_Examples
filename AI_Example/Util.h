@@ -2,6 +2,17 @@
 #include <map>
 
 
+struct Palazzo
+{
+	std::string name = "";
+	std::string owner = "";
+	std::string shortDescription = "";
+	int numberOfFloors = 0;
+	int numberOfExits = 0;
+	int guards = 0;
+	bool dog;
+};
+
 enum location_type
 {
 	location_none,
@@ -24,19 +35,19 @@ enum equipment_type
 enum command_type
 {
 	command_none,
-	help,
-	rest,
-	plan_robbery,
-	buy_goods,
-	pockets,
-	shelf,
-	add,
-	replace,
-	move,
-	drop,
-	ready,
-	not_ready,
-	stop
+	command_help,
+	command_rest,
+	command_plan_robbery,
+	command_buy_goods,
+	command_pockets,
+	command_shelf,
+	command_add,
+	command_replace,
+	command_remove,
+	command_drop,
+	command_ready,
+	command_not_ready,
+	command_stop
 };
 
 
@@ -61,17 +72,17 @@ static std::map <location_type, std::string> LocationNames =
 
 static std::map <std::string, command_type> StringCommands =
 {
-	{"help",			help},
-	{"rest",			rest},
-	{"plan",			plan_robbery},
-	{"pockets",			pockets},
-	{"shelf",			shelf},
-	{"add",				add},
-	{"replace",			replace},
-	{"move",			move},
-	{"drop",			drop},
-	{"ready",			ready},
-	{"not_ready",		not_ready},
-	{"stop",			stop}
+	{"help",			command_help},
+	{"rest",			command_rest},
+	{"plan",			command_plan_robbery},
+	{"pockets",			command_pockets},
+	{"shelf",			command_shelf},
+	{"add",				command_add},
+	{"replace",			command_replace},
+	{"remove",			command_remove},
+	{"drop",			command_drop},
+	{"ready",			command_ready},
+	{"not_ready",		command_not_ready},
+	{"stop",			command_stop}
 
 };

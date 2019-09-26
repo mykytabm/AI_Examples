@@ -15,17 +15,17 @@ void CommandHandler::HandleCommand(command_type command, Thief*  thief)
 		std::cout << "*coughs* you can do better" << std::endl;
 		ReadAndProccessCommand(thief);
 		break;
-	case help:
+	case command_help:
 		ShowHelp();
 		ReadAndProccessCommand(thief);
 
 
 		break;
-	case plan_robbery:
+	case command_plan_robbery:
 		thief->FSM()->ChangeState(GoHomeAndPlanRobbery::Instance());
 		break;
 
-	case buy_goods:
+	case command_buy_goods:
 		//set state to enter market and buy/sell goods
 		break;
 	}

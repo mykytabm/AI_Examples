@@ -155,6 +155,7 @@
     <ClInclude Include="CommandHandler.h" />
     <ClInclude Include="GoHomeAndPlanRobbery.h" />
     <ClInclude Include="Home.h" />
+    <ClInclude Include="NameGenerator.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Util.h" />
     <ClInclude Include="EnterPalacioAndStealGoods.h" />
@@ -176,6 +177,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="BaseGameEntity.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="NameGenerator.cpp" />
     <ClCompile Include="Thief.cpp" />
     <ClCompile Include="ThiefGame.cpp" />
     <ClCompile Include="pch.cpp">

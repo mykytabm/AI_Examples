@@ -6,8 +6,10 @@
 #include "CommandHandler.h"
 #include "ThiefGame.h"
 #include "Home.h"
+#include "NameGenerator.h"
 
 ThiefGame* ThiefGame::_instance = 0;
+NameGenerator* nameGenerator = NameGenerator::Instance();
 CommandHandler* commandHandler = CommandHandler::Instance();
 Home thiefHome = Home();
 Thief thief = Thief("Carla", &thiefHome);
@@ -30,7 +32,7 @@ void ThiefGame::Start()
 	thief.Start();
 	thiefHome.Start();
 
-	std::cout << "Thief " << thief.Name() << " just appeared in Venice, in his/her small palacio" << std::endl;
+	std::cout << "Thief " << thief.Name() << " just appeared in Venice, in his/her small palazzo" << std::endl;
 	commandHandler->ReadAndProccessCommand(&thief);
 
 	//thief.ChangeLocation(home);

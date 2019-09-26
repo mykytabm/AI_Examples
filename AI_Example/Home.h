@@ -8,7 +8,8 @@
 class Home : public BaseGameEntity
 {
 private:
-	std::vector<equipment_type> _equipmentShelf = std::vector<equipment_type>();
+	//std::vector <
+		std::vector<equipment_type> _equipmentShelf = std::vector<equipment_type>();
 	int _equipmentNum = 6;
 public:
 	std::vector<equipment_type>* Equipment() { return &_equipmentShelf; }
