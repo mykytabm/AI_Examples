@@ -12,4 +12,5 @@ public:
 	virtual void Enter(Thief* thief);
 	virtual void Execute(Thief* thief);
 	virtual void Exit(Thief* thief);
+	~VisitTavernAndSellGoods();
 };

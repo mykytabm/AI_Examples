@@ -51,3 +51,8 @@ void VisitTavernAndSellGoods::Exit(Thief* thief)
 {
 	cout << "*" << thief->Name() << "  silently leaves the tavern*" << endl;
 }
+
+VisitTavernAndSellGoods::~VisitTavernAndSellGoods()
+{
+	
+}

@@ -124,7 +124,12 @@ void GoHomeAndPlanRobbery::SelectRobberyTarget(Home * home)
 	std::cout << "=====================================================================================" << std::endl;
 	std::string s = "";
 	std::getline(std::cin, s);
-	//if()
+	std::stringstream iss(s);
+	int x = 0;
+	if (iss >> x)
+	{
+
+	}
 
 }
 
