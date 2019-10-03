@@ -1,8 +1,9 @@
 #pragma once
-
 template <class entity_type>
 class State
 {
+private:
+
 public:
 
 	virtual ~State() {}

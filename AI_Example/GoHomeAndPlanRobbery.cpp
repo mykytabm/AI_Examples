@@ -5,7 +5,8 @@
 #include <algorithm>
 #include "CommandHandler.h"
 #include "GoHomeAndPlanRobbery.h"
-GoHomeAndPlanRobbery * GoHomeAndPlanRobbery::Instance()
+#include "EnterPalacioAndStealGoods.h"
+GoHomeAndPlanRobbery* GoHomeAndPlanRobbery::Instance()
 {
 	static GoHomeAndPlanRobbery instance;
 	return &instance;
@@ -13,7 +14,7 @@ GoHomeAndPlanRobbery * GoHomeAndPlanRobbery::Instance()
 
 
 
-void GoHomeAndPlanRobbery::Enter(Thief * thief)
+void GoHomeAndPlanRobbery::Enter(Thief* thief)
 {
 
 	if (thief->Location() != home)
@@ -25,22 +26,33 @@ void GoHomeAndPlanRobbery::Enter(Thief * thief)
 	std::cout << "I need to choose who I will be robbing this time" << std::endl;
 
 	SelectRobberyTarget(thief->ThiefHome());
-
-	//ManageEquipment(thief, thief->ThiefHome());
+	std::cout << "Now I need to pick right equipment" << std::endl;
+	ManageEquipment(thief, thief->ThiefHome());
+	thief->FSM()->ChangeState(EnterPalacioAndStealGoods::Instance(_targetPalazzo));
 }
 
+GoHomeAndPlanRobbery::GoHomeAndPlanRobbery()
+{
+	_targetPalazzo = Palazzo();
+}
+
+bool GoHomeAndPlanRobbery::PlayerReady(std::string s)
+{
+	return CommandHandler::Instance()->ParseCommand(s) == command_ready;
+}
 void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 {
 	bool userReady = false;
 	std::string feedback = "";
 	while (!userReady)
 	{
-		//system("cls");
+		system("cls");
 		DisplayItems(thief, home, feedback);
 
 		std::string s = "";
 		std::getline(std::cin, s);
 
+		userReady = PlayerReady(s);
 
 		int firstItemIndex = -1;
 		int secondItemIndex = -1;
@@ -67,7 +79,6 @@ void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 			feedback = "incorrect input";
 			continue;
 		}
-
 
 		//setup equipment vectors according to user input
 		bool userOperatesPockets = parsedCommands[0] == command_pockets;
@@ -100,35 +111,43 @@ void GoHomeAndPlanRobbery::ManageEquipment(Thief* thief, Home* home)
 }
 
 
-void GoHomeAndPlanRobbery::SelectRobberyTarget(Home * home)
+void GoHomeAndPlanRobbery::SelectRobberyTarget(Home* home)
 {
 	system("cls");
-
-
-	auto palazzoVec = home->Palazzos();
-	for (size_t i = 0; i < palazzoVec->size(); i++)
-	{
-		auto p = palazzoVec->at(i);
-		std::cout << "=============================" << i + 1 << ". Palazzo of " << p.owner << " =============================" << std::endl << std::endl;
-
-		std::cout << "Additional notes: " << p.shortDescription << std::endl << std::endl;
-
-		std::cout << "Number of floors: " << p.guards << std::endl << std::endl;
-
-		std::cout << "Number of guards: " << p.numberOfFloors << std::endl << std::endl;
-
-		std::cout << "Number of exits: " << p.numberOfExits << std::endl << std::endl;
-
-		std::cout << "Dog: " << (p.dog ? " Si" : " No ") << std::endl << std::endl;
-	}
-	std::cout << "=====================================================================================" << std::endl;
-	std::string s = "";
-	std::getline(std::cin, s);
-	std::stringstream iss(s);
 	int x = 0;
-	if (iss >> x)
+	while (_targetPalazzo.owner == "")
 	{
+		auto palazzoVec = home->Palazzos();
+		for (size_t i = 0; i < palazzoVec->size(); i++)
+		{
+			auto p = palazzoVec->at(i);
+			std::cout << "=============================" << i + 1 << ". Palazzo of " << p.owner << " =============================" << std::endl << std::endl;
 
+			std::cout << "Additional notes: " << p.shortDescription << std::endl << std::endl;
+
+			std::cout << "Number of floors: " << p.guards << std::endl << std::endl;
+
+			std::cout << "Number of guards: " << p.numberOfFloors << std::endl << std::endl;
+
+			std::cout << "Number of exits: " << p.numberOfExits << std::endl << std::endl;
+
+			std::cout << "Dog: " << (p.dog ? " Si" : " No ") << std::endl << std::endl;
+		}
+		std::cout << "=====================================================================================" << std::endl;
+		std::string s = "";
+		std::getline(std::cin, s);
+		//TODO: insert handling exit commands
+		//if (CommandHandler::Instance()->ParseCommand(s) == command_stop)
+
+		std::stringstream iss(s);
+
+		if (iss >> x)
+		{
+			if (x > palazzoVec->size())
+				continue;
+			x--;
+			_targetPalazzo = palazzoVec->at(x);
+		}
 	}
 
 }
@@ -138,6 +157,8 @@ void GoHomeAndPlanRobbery::HandleUserAction(std::vector<command_type> parsedComm
 	std::vector<equipment_type>* firstVec, int firstItemIndex,
 	std::vector<equipment_type>* secondVec, int  secondItemIndex)
 {
+	firstItemIndex--;
+	secondItemIndex--;
 	std::string feedback = *s;
 	switch (parsedCommands[1])
 	{
@@ -150,12 +171,12 @@ void GoHomeAndPlanRobbery::HandleUserAction(std::vector<command_type> parsedComm
 		{
 			if (firstVec->at(i) == equipment_none)
 			{
-				if (firstItemIndex > secondVec->size()) break;
+				if (firstItemIndex > secondVec->size() - 1) break;
 
-				*s = "Item " + EquipmentNames[secondVec->at(firstItemIndex - 1)] + " was added";
+				*s = "Item " + EquipmentNames[secondVec->at(firstItemIndex)] + " was added";
 
-				firstVec->at(i) = secondVec->at(firstItemIndex - 1);
-				secondVec->at(firstItemIndex - 1) = equipment_none;
+				firstVec->at(i) = secondVec->at(firstItemIndex);
+				secondVec->at(firstItemIndex) = equipment_none;
 				break;
 			}
 		}
@@ -164,22 +185,22 @@ void GoHomeAndPlanRobbery::HandleUserAction(std::vector<command_type> parsedComm
 
 	case command_replace:
 	{
-		if (firstItemIndex > firstVec->size() || secondItemIndex > secondVec->size()) break;
+		if (firstItemIndex > firstVec->size() - 1 || secondItemIndex > secondVec->size() - 1) break;
 
-		*s = "Item " + EquipmentNames[firstVec->at(firstItemIndex - 1)] +
-			" was replaced with " + EquipmentNames[secondVec->at(secondItemIndex - 1)];
+		*s = "Item " + EquipmentNames[firstVec->at(firstItemIndex)] +
+			" was replaced with " + EquipmentNames[secondVec->at(secondItemIndex)];
 
-		equipment_type temp = firstVec->at(firstItemIndex - 1);
-		firstVec->at(firstItemIndex - 1) = secondVec->at(secondItemIndex - 1);
-		secondVec->at(secondItemIndex - 1) = temp;
+		equipment_type temp = firstVec->at(firstItemIndex);
+		firstVec->at(firstItemIndex) = secondVec->at(secondItemIndex);
+		secondVec->at(secondItemIndex) = temp;
 		break;
 
 	}
 	case command_drop:
 
-		*s = "Item " + EquipmentNames[firstVec->at(firstItemIndex - 1)] + " was dropped";
+		*s = "Item " + EquipmentNames[firstVec->at(firstItemIndex)] + " was dropped";
 
-		firstVec->at(firstItemIndex - 1) = equipment_none;
+		firstVec->at(firstItemIndex) = equipment_none;
 
 
 		break;
@@ -190,9 +211,9 @@ void GoHomeAndPlanRobbery::HandleUserAction(std::vector<command_type> parsedComm
 		{
 			if (secondVec->at(i) == equipment_none)
 			{
-				*s = "Item " + EquipmentNames[firstVec->at(firstItemIndex - 1)] + " was removed";
-				secondVec->at(i) = firstVec->at(firstItemIndex - 1);
-				firstVec->at(firstItemIndex - 1) = equipment_none;
+				*s = "Item " + EquipmentNames[firstVec->at(firstItemIndex)] + " was removed";
+				secondVec->at(i) = firstVec->at(firstItemIndex);
+				firstVec->at(firstItemIndex) = equipment_none;
 
 				break;
 			}
@@ -202,9 +223,10 @@ void GoHomeAndPlanRobbery::HandleUserAction(std::vector<command_type> parsedComm
 }
 
 
-void GoHomeAndPlanRobbery::DisplayItems(Thief * thief, Home * home, std::string feedback)
+void GoHomeAndPlanRobbery::DisplayItems(Thief* thief, Home* home, std::string feedback)
 {
 	//print items in the shelf
+	std::cout << "======================= Target: " << "Palazzo of " << _targetPalazzo.owner << " =======================" << std::endl;
 	std::cout << "================================== Equipment Shelf ==================================" << std::endl;
 	for (size_t i = 0; i < home->Equipment()->size(); i++)
 	{
@@ -229,11 +251,11 @@ void GoHomeAndPlanRobbery::DisplayItems(Thief * thief, Home * home, std::string 
 }
 
 
-void GoHomeAndPlanRobbery::Execute(Thief * thief)
+void GoHomeAndPlanRobbery::Execute(Thief* thief)
 {
 }
 
-void GoHomeAndPlanRobbery::Exit(Thief * thief)
+void GoHomeAndPlanRobbery::Exit(Thief* thief)
 {
 
 }

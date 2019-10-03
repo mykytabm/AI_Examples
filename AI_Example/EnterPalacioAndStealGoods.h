@@ -1,18 +1,17 @@
 #pragma once
 #include "State.h"
-
+#include "Util.h"
 class Thief;
 class EnterPalacioAndStealGoods : public State<Thief>
 {
 private:
-	EnterPalacioAndStealGoods() {}
-
+	Palazzo _palazzo;
 	EnterPalacioAndStealGoods(const EnterPalacioAndStealGoods&);
 	EnterPalacioAndStealGoods& operator=(const EnterPalacioAndStealGoods&);
-
-
+	void Encounter(Thief* thief);
 public:
-	static EnterPalacioAndStealGoods* Instance();
+	EnterPalacioAndStealGoods(Palazzo palazzo);
+	static EnterPalacioAndStealGoods* Instance(Palazzo palazzo);
 
 	virtual void Enter(Thief* thief);
 	virtual void Execute(Thief* thief);

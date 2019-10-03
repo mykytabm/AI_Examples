@@ -1,5 +1,6 @@
 #include <string>
 #include <cctype>
+#include <sstream>
 #include <algorithm>
 #include "CommandHandler.h"
 #include "GoHomeAndPlanRobbery.h"
@@ -7,7 +8,7 @@
 
 CommandHandler* CommandHandler::_instance = 0;
 
-void CommandHandler::HandleCommand(command_type command, Thief*  thief)
+void CommandHandler::HandleCommand(command_type command, Thief* thief)
 {
 	switch (command)
 	{
@@ -35,7 +36,6 @@ void CommandHandler::HandleCommand(command_type command, Thief*  thief)
 }
 
 
-
 void CommandHandler::ShowHelp()
 {
 	std::cout << "Thief whispers possible commands: " << std::endl;
@@ -47,7 +47,7 @@ void CommandHandler::ShowHelp()
 
 
 
-bool CommandHandler::ParseCommand(std::string commandUnparsed, Thief * thief)
+bool CommandHandler::ParseCommand(std::string commandUnparsed, Thief* thief)
 {
 	command_type command = command_none;
 
@@ -107,7 +107,7 @@ location_type CommandHandler::ProccessLocationInput()
 }
 
 
-void CommandHandler::ReadAndProccessCommand(Thief * thief)
+void CommandHandler::ReadAndProccessCommand(Thief* thief)
 {
 	std::cout << "Enter command:" << std::endl;
 	std::string unparsedCommand;
@@ -120,6 +120,14 @@ void CommandHandler::ReadAndProccessCommand(Thief * thief)
 
 }
 
+
+
+
+void CommandHandler::ParseCommand(command_type* commandHolder, std::string* commandUnparsed, std::vector<command_type>* allowedCommands)
+{
+
+}
+
 bool CommandHandler::CommandAllowed(std::vector<command_type> allowedCommands, command_type command)
 {
 	auto x = std::find(std::begin(allowedCommands), std::end(allowedCommands), command);
@@ -127,7 +135,7 @@ bool CommandHandler::CommandAllowed(std::vector<command_type> allowedCommands, c
 	return true;
 }
 
-CommandHandler * CommandHandler::Instance()
+CommandHandler* CommandHandler::Instance()
 {
 	if (_instance == 0)
 	{

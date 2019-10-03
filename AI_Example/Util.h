@@ -74,7 +74,8 @@ static std::map <std::string, command_type> StringCommands =
 {
 	{"help",			command_help},
 	{"rest",			command_rest},
-	{"plan",			command_plan_robbery},
+	{"plan robbery",	command_plan_robbery},
+	{"visit market", command_buy_goods},
 	{"pockets",			command_pockets},
 	{"shelf",			command_shelf},
 	{"add",				command_add},

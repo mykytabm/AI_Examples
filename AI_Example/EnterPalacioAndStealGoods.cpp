@@ -6,9 +6,14 @@
 #include "Thief.h"
 using namespace std;
 
-EnterPalacioAndStealGoods* EnterPalacioAndStealGoods::Instance()
+EnterPalacioAndStealGoods::EnterPalacioAndStealGoods(Palazzo palazzo)
 {
-	static EnterPalacioAndStealGoods instance;
+	_palazzo = palazzo;
+}
+
+EnterPalacioAndStealGoods* EnterPalacioAndStealGoods::Instance(Palazzo palazzo)
+{
+	static EnterPalacioAndStealGoods instance = EnterPalacioAndStealGoods(palazzo);
 	return &instance;
 }
 
@@ -16,9 +21,9 @@ void EnterPalacioAndStealGoods::Enter(Thief* thief)
 {
 	if (thief->Location() != palacio)
 	{
-		cout << thief->Name() << ": "
-			<< "Heading to some lords' palacio.." << endl;
 		thief->ChangeLocation(palacio);
+		cout << thief->Name() << " arrived to palazzo of " << _palazzo.owner << std::endl;
+		cout << "what do you want to do?" << std::endl;
 	}
 }
 
