@@ -1,17 +1,13 @@
-
 #include "pch.h"
-#include <fstream>
 #include <iostream>
-#include "ThiefGame.h"
-#include <thread>
-#include <chrono>
-using namespace std;
+#include "ThiefFSM.h"
 
-ofstream out;
+#include <thread>
+#include <chrono>  
 
 int main()
 {
-	ThiefGame* MyThiefGame = ThiefGame::Instance();
+	ThiefFSM* MyThiefGame = ThiefFSM::Instance();
 
 
 	MyThiefGame->Initialize();
@@ -20,7 +16,7 @@ int main()
 	for (int i = 0; i < 100; i++)
 	{
 		MyThiefGame->Update();
-		system("pause");
+		std::this_thread::sleep_for(std::chrono::seconds(1));
 	}
 
 	return 0;

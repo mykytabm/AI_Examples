@@ -1,5 +1,5 @@
 #pragma once
-enum location_type
+enum class location_type
 {
 	home,
 	tavern_red_fool,

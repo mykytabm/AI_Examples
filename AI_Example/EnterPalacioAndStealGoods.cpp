@@ -14,11 +14,11 @@ EnterPalacioAndStealGoods* EnterPalacioAndStealGoods::Instance()
 
 void EnterPalacioAndStealGoods::Enter(Thief* thief)
 {
-	if (thief->Location() != palacio)
+	if (thief->Location() != location_type::palacio)
 	{
 		cout << thief->Name() << ": "
 			<< "Heading to some lords' palacio.." << endl;
-		thief->ChangeLocation(palacio);
+		thief->ChangeLocation(location_type::palacio);
 	}
 }
 
@@ -26,6 +26,7 @@ void EnterPalacioAndStealGoods::Execute(Thief* thief)
 {
 	thief->AddGoodsToBag(1);
 	thief->UpdateHunger(1);
+	thief->UpdateEnergy(-1);
 	cout << thief->Name() << ": "
 		<< "Oh, this is now mine.";
 	cout << " *" << thief->Name() << " found 1  good*" << endl;

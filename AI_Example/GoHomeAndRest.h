@@ -5,8 +5,8 @@
 class GoHomeAndRest : public State<Thief>
 {
 private:
-	int* _time;
-	GoHomeAndRest() {}
+
+	GoHomeAndRest() {};
 
 public:
 	static GoHomeAndRest* Instance();

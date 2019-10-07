@@ -5,6 +5,10 @@
 
 using namespace std;
 
+VisitTavernAndSellGoods::~VisitTavernAndSellGoods()
+{
+}
+
 VisitTavernAndSellGoods* VisitTavernAndSellGoods::Instance()
 {
 	static VisitTavernAndSellGoods instance;
@@ -13,12 +17,12 @@ VisitTavernAndSellGoods* VisitTavernAndSellGoods::Instance()
 
 void VisitTavernAndSellGoods::Enter(Thief* thief)
 {
-	if (thief->Location() != tavern_red_fool)
+	if (thief->Location() != location_type::tavern_red_fool)
 	{
 		cout << thief->Name() << ": "
 			<< "On my way to mama Julie" << endl;
 
-		thief->ChangeLocation(tavern_red_fool);
+		thief->ChangeLocation(location_type::tavern_red_fool);
 	}
 
 	cout << "*opens the tavern door*" << endl;
@@ -37,12 +41,13 @@ void VisitTavernAndSellGoods::Enter(Thief* thief)
 
 void VisitTavernAndSellGoods::Execute(Thief* thief)
 {
-	if (thief->Hunger() >= 2 && thief->Gold() >= 1)
+	if (thief->Hunger() >= 2 && thief->Gold() >= 1 && thief->Energy() > 3)
 	{
 		cout << " thief sits and drinks a bit of wine" << endl;
 		cout << "thief spent one gold" << endl;
 		thief->AddGold(-1);
 		thief->UpdateHunger(-2);
+		thief->UpdateEnergy(-1);
 	}
 	else
 		thief->FSM()->ChangeState(GoHomeAndRest::Instance());

@@ -4,8 +4,8 @@
 class VisitTavernAndSellGoods : public State<Thief>
 {
 private:
-	VisitTavernAndSellGoods() {}
-
+	VisitTavernAndSellGoods() {};
+	~VisitTavernAndSellGoods();
 public:
 	static VisitTavernAndSellGoods* Instance();
 

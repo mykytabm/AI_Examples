@@ -1,34 +1,34 @@
 #include "GoHomeAndRest.h"
 #include "Locations.h"
-#include "ThiefGame.h"
+#include "ThiefFSM.h"
 #include "EnterPalacioAndStealGoods.h"
 
 
 
-GoHomeAndRest * GoHomeAndRest::Instance()
+GoHomeAndRest* GoHomeAndRest::Instance()
 {
 	static GoHomeAndRest instance;
 	return &instance;
 }
 
-void GoHomeAndRest::Enter(Thief * thief)
+void GoHomeAndRest::Enter(Thief* thief)
 {
-	_time = ThiefGame::Instance()->Hour();
-	if (thief->Location() != home)
+	if (thief->Location() != location_type::home)
 	{
-		thief->ChangeLocation(home);
+		thief->ChangeLocation(location_type::home);
+		std::cout << "finally home, will relax for a little bit" << std::endl;
 	}
 }
 
-void GoHomeAndRest::Execute(Thief * thief)
+void GoHomeAndRest::Execute(Thief* thief)
 {
-	std::cout << *_time;
-	if (*_time == 24) {
+	if (thief->Energy() > 9)
 		thief->FSM()->ChangeState(EnterPalacioAndStealGoods::Instance());
-	}
+
+	thief->UpdateEnergy(2);
 }
 
-void GoHomeAndRest::Exit(Thief * thief)
+void GoHomeAndRest::Exit(Thief* thief)
 {
-	std::cout << ("Hello darkness my old friend") << std::endl;
+	std::cout << ("It is time to do dark things.") << std::endl;
 }
